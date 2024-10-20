@@ -26,11 +26,6 @@ export function AppBridgeProvider({ children }) {
     []
   );
 
-  const routerConfig = useMemo(
-    () => ({ history, location }),
-    [history, location]
-  );
-
   // The host may be present initially, but later removed by navigation.
   // By caching this in state, we ensure that the host is never lost.
   // During the lifecycle of an app, these values should never be updated anyway.

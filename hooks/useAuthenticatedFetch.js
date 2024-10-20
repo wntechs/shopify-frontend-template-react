@@ -19,7 +19,7 @@ export function useAuthenticatedFetch()
     };
 }
 
-function checkHeadersForReauthorization(headers, app)
+function checkHeadersForReauthorization(headers)
 {
     if (headers.get("X-Shopify-API-Request-Failure-Reauthorize") === "1") {
         const authUrlHeader =

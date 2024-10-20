@@ -36,18 +36,18 @@ export default function HomePage() {
                       i18nKey="HomePage.yourAppIsReadyToExplore"
                       components={{
                         PolarisLink: (
-                          <Link url="https://polaris.shopify.com/" external />
+                          <Link url="https://polaris.shopify.com/" target="_blank" />
                         ),
                         AdminApiLink: (
                           <Link
                             url="https://shopify.dev/api/admin-graphql"
-                            external
+                            target="_blank"
                           />
                         ),
                         AppBridgeLink: (
                           <Link
                             url="https://shopify.dev/apps/tools/app-bridge"
-                            external
+                            target="_blank"
                           />
                         ),
                       }}
@@ -61,7 +61,7 @@ export default function HomePage() {
                         ShopifyTutorialLink: (
                           <Link
                             url="https://shopify.dev/apps/getting-started/add-functionality"
-                            external
+                            target="_blank"
                           />
                         ),
                       }}
