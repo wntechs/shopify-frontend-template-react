@@ -1,12 +1,11 @@
 import {useState} from "react";
-import {LegacyCard, TextContainer, Text} from "@shopify/polaris";
+import {Card, BlockStack, Text, InlineStack, Button} from "@shopify/polaris";
 import {useTranslation} from "react-i18next";
 import {useAppQuery} from "../hooks";
 import {useAppBridge} from "@shopify/app-bridge-react";
 
 export function ProductsCard() {
     const app = useAppBridge();
-    const emptyToastProps = {content: null};
     const [isLoading, setIsLoading] = useState(true);
     const {t} = useTranslation();
     const productsCount = 5;
@@ -44,18 +43,11 @@ export function ProductsCard() {
     };
 
     return (
-        <LegacyCard
+        <Card
             title={t("ProductsCard.title")}
             sectioned
-            primaryFooterAction={{
-                content: t("ProductsCard.populateProductsButton", {
-                    count: productsCount,
-                }),
-                onAction: handlePopulate,
-                loading: isLoading,
-            }}
         >
-            <TextContainer spacing="loose">
+            <BlockStack gap="5">
                 <p>{t("ProductsCard.description")}</p>
                 <Text as="h4" variant="headingMd">
                     {t("ProductsCard.totalProductsHeading")}
@@ -63,7 +55,22 @@ export function ProductsCard() {
                         {isLoadingCount ? "-" : data.count}
                     </Text>
                 </Text>
-            </TextContainer>
-        </LegacyCard>
+            </BlockStack>
+            <InlineStack align="end">
+                <Button
+                    tone={"success"}
+                    variant="primary"
+                    loading={isLoading}
+                    onClick={handlePopulate}
+                    accessibilityLabel={ t("ProductsCard.populateProductsButton", {
+                        count: productsCount,
+                    }) }
+                >
+                    { t("ProductsCard.populateProductsButton", {
+                        count: productsCount,
+                    }) }
+                </Button>
+            </InlineStack>
+        </Card>
     );
 }
