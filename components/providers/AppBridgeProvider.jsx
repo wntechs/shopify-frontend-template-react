@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Banner, Layout, Page } from "@shopify/polaris";
-import navigation from "jsdom/lib/jsdom/living/window/navigation.js";
+
 
 /**
  * A component to configure App Bridge.
@@ -14,17 +14,6 @@ import navigation from "jsdom/lib/jsdom/living/window/navigation.js";
  */
 export function AppBridgeProvider({ children }) {
   const location = useLocation();
-
-  const history = useMemo(
-    () => ({
-      replace: (path) => {
-          navigation.navigate(path, {
-              history: 'replace',
-          });
-      },
-    }),
-    []
-  );
 
   // The host may be present initially, but later removed by navigation.
   // By caching this in state, we ensure that the host is never lost.
