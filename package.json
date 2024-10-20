@@ -38,6 +38,7 @@
     "jsdom": "^25.0.1",
     "prettier": "^3.3.3",
     "stylelint": "^15.11.0",
-    "vi-fetch": "^0.8.0"
+    "vi-fetch": "^0.8.0",
+    "vite-plugin-html": "^3.2.2"
   }
 }

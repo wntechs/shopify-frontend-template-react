@@ -3,6 +3,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import https from "https";
 import react from "@vitejs/plugin-react";
+import {createHtmlPlugin} from "vite-plugin-html";
 
 if (
   process.env.npm_lifecycle_event === "build" &&
@@ -44,7 +45,14 @@ if (host === "localhost") {
 
 export default defineConfig({
   root: dirname(fileURLToPath(import.meta.url)),
-  plugins: [react()],
+  plugins: [react(),
+      createHtmlPlugin({
+      inject: {
+          data: {
+              VITE_SHOPIFY_API_KEY: process.env.SHOPIFY_API_KEY,
+          },
+      },
+  }),],
   define: {
     "process.env.SHOPIFY_API_KEY": JSON.stringify(process.env.SHOPIFY_API_KEY),
   },
