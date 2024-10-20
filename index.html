@@ -5,15 +5,24 @@
 
     <!-- Ensures that the UI is properly scaled in the Shopify Mobile app -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+      <meta name="shopify-api-key" content="f4ee6a69f5c4de95add6f8f716648fb2" />
+      <script src="https://cdn.shopify.com/shopifycloud/app-bridge.js"></script>
     <script type="module">
       if (!import.meta.env || !import.meta.env.PROD) {
+         // console.log("API KEY", import.meta.env.SHOPIFY_API_KEY)
         // Because the base HTML is rendered in the server side, we need to manually embed the code to enable HMR in our
         // code, so that the vite server is properly enabled to run HMR
-        const script = document.createElement('script');
-        script.setAttribute('type', "module");
-        script.setAttribute('src', "./dev_embed.js");
-        document.getElementsByTagName('head')[0].append(script);
+        /*const meta = document.createElement('meta');
+          meta.setAttribute('name', "shopify-api-key");
+          meta.setAttribute('content', import.meta.env.SHOPIFY_API_KEY);
+        document.getElementsByTagName('head')[0].append(meta);*/
+
+
+          const script = document.createElement('script');
+          script.setAttribute('type', "module");
+          script.setAttribute('src', "./dev_embed.js");
+          document.getElementsByTagName('head')[0].append(script);
+
       }
     </script>
   </head>

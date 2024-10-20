@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Provider } from "@shopify/app-bridge-react";
+import { useLocation } from "react-router-dom";
 import { Banner, Layout, Page } from "@shopify/polaris";
+import navigation from "jsdom/lib/jsdom/living/window/navigation.js";
 
 /**
  * A component to configure App Bridge.
@@ -14,14 +14,16 @@ import { Banner, Layout, Page } from "@shopify/polaris";
  */
 export function AppBridgeProvider({ children }) {
   const location = useLocation();
-  const navigate = useNavigate();
+
   const history = useMemo(
     () => ({
       replace: (path) => {
-        navigate(path, { replace: true });
+          navigation.navigate(path, {
+              history: 'replace',
+          });
       },
     }),
-    [navigate]
+    []
   );
 
   const routerConfig = useMemo(
@@ -85,8 +87,6 @@ export function AppBridgeProvider({ children }) {
   }
 
   return (
-    <Provider config={appBridgeConfig} router={routerConfig}>
-      {children}
-    </Provider>
+      <>{children}</>
   );
 }
